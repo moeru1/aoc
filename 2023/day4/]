@@ -1,0 +1,38 @@
+use std::collections::HashSet;
+
+pub fn solve_part1(input: &str) -> String {
+    input.split_terminator('\n')
+        .map(|line| {
+            let (winning, numbers) = line.split_once('|').unwrap();
+            let winning = winning.split_ascii_whitespace();
+            let winning_set = HashSet::from_iter(winning);
+            let numbers = numbers.split_ascii_whitespace();
+            let sum = numbers.filter_map(|n| winning_set.get(n)).map(|&n| n.parse::<i32>().unwrap()).sum();
+           
+        })
+        "".to_string()
+}
+
+pub fn solve_part2(input: &str) -> String {
+    input.to_string()
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const INPUT: &str = "2x3x4\n1x1x10";
+
+    #[test]
+    fn part1_works() {
+        let result = solve_part1(INPUT);
+        //assert_eq!(result, "2");
+    }
+
+    #[test]
+    fn part2_works() {
+        let result = solve_part2(INPUT);
+        //assert_eq!(result, "48");
+    }
+}
